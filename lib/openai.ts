@@ -12,7 +12,7 @@ import {
 
 export class OpenAI {
   private apiKey: string;
-
+  
   constructor(apiKey: string) {
     this.apiKey = apiKey;
   }
