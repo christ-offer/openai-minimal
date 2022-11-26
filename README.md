@@ -1,8 +1,14 @@
-# OpenAI Library for Deno
+# Minimal OpenAI Library
 
-This is a library for Deno that provides a wrapper for the OpenAI API.
+A minimal library for the OpenAI API.
 
-It is a work in progress, but is usable. It just does not have all the features of the API yet.
+The included functionality is:
+
+* Model Retrieval
+* Completions (text/code generation)
+* Edit
+* Image Generation
+* Moderation
 
 The missing features are:
 
