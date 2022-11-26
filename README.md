@@ -15,11 +15,12 @@ You have to supply an API key to use the API. You can get one from [OpenAI](http
 
 ## Usage
 
+I decided to leave it as "unopinionated" as possible, so there are no default values for any of the parameters. You have to supply all of them.
 
 ```ts
 const openai = new OpenAI('your-api-key');
 
-const prompt = "/* Return a markdown readme file for a program that has a function called checkWeather() that uses the met.no api to get the current weather */"
+const prompt = "const helloWorld = ("
 const res = await openai.createCompletion({
   model: "code-davinci-002",
   prompt: `${prompt}`,
