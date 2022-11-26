@@ -24,6 +24,8 @@ You have to supply an API key to use the API. You can get one from [OpenAI](http
 I decided to leave it as "unopinionated" as possible, so there are no default values for any of the parameters. You have to supply all of them.
 
 ```ts
+import { OpenAI } from "https://deno.land/x/openai_mini/mod.ts";
+
 const openai = new OpenAI('your-api-key');
 
 const prompt = "const helloWorld = ("
