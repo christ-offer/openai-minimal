@@ -21,7 +21,7 @@ I decided to leave it as "unopinionated" as possible, so there are no default va
 const openai = new OpenAI('your-api-key');
 
 const prompt = "const helloWorld = ("
-const res = await openai.createCompletion({
+const completion = await openai.createCompletion({
   model: "code-davinci-002",
   prompt: `${prompt}`,
   max_tokens: 400,
@@ -33,6 +33,23 @@ const res = await openai.createCompletion({
   stop: "",
 });
 
+console.log(completion.choices[0].text);
 
-console.log(res.choices[0].text);
+const moderation = await openai.createModeration({input: completion.choices[0].text})
+
+const edit = await openai.createEdit({
+  model: "text-edit-davinci-001"
+  instruction: "Fix any spelling mistake"
+  input: "I am a gewd speler"
+})
+
+const image = await openai.createImage({
+  prompt: "an image of a brown cat holding a piece of pizza",
+  n: 1,
+  size: "1024x1024",
+  response_format: "url"
+})
+
+const models = await openai.getModels()
+
 ```

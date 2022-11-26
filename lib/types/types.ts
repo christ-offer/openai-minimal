@@ -127,6 +127,7 @@ interface Data {
   url: string;
 }
 
+
 export type { 
   Models, 
   Model, 
@@ -137,5 +138,5 @@ export type {
   ModerationRequest, 
   ModerationResponse, 
   ImageRequest, 
-  ImageResponse 
+  ImageResponse
 };
