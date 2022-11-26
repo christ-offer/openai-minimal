@@ -127,4 +127,15 @@ interface Data {
   url: string;
 }
 
-export type { Models, Model, CompletionRequest, CompletionResponse, EditRequest, EditResponse, ModerationRequest, ModerationResponse, ImageRequest, ImageResponse };
+export type { 
+  Models, 
+  Model, 
+  CompletionRequest, 
+  CompletionResponse, 
+  EditRequest, 
+  EditResponse, 
+  ModerationRequest, 
+  ModerationResponse, 
+  ImageRequest, 
+  ImageResponse 
+};
