@@ -1,4 +1,20 @@
+# OpenAI Library for Deno
+
+This is a library for Deno that provides a wrapper for the OpenAI API.
+
+It is a work in progress, but is usable. It just does not have all the features of the API yet.
+
+The missing features are:
+
+* Fine-tuning
+* Embeddings
+* Files
+
+You have to supply an API key to use the API. You can get one from [OpenAI](https://beta.openai.com/).
+
+
 ## Usage
+
 
 ```ts
 const openai = new OpenAI('your-api-key');
@@ -16,8 +32,6 @@ const res = await openai.createCompletion({
   stop: "",
 });
 
-const moderation = await openai.createModeration(res.data.choices[0].text);
 
 console.log(res.choices[0].text);
-console.log(moderation.data);
 ```
