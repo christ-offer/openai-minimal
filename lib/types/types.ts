@@ -1,4 +1,8 @@
-// Models
+
+interface AvailableModels {
+  model: "ada" | "babbage" | "curie" | "davinci"
+}
+
 
 interface Models {
   data: Model[];
@@ -127,8 +131,82 @@ interface Data {
   url: string;
 }
 
+interface FineTunes {
+  object: string,
+  data: FineTune[];
+}
 
-export type { 
+interface FineTune {
+  object: "fine-tune";
+  id: string;
+  hyperparams: {
+    n_epochs: number;
+    batch_size: number | null;
+    prompt_loss_weight: number;
+    learning_rate_multiplier: number | null;
+  },
+  organization_id: string;
+  model: string;
+  training_files: any[];
+  validation_files: any[];
+  result_files: any[];
+  created_at: number;
+  updated_at: number;
+  status: "pending" | "running" | "completed" | "failed";
+  fine_tuned_model: any | null;
+}
+
+interface FineTuneResponse {
+  object: "fine-tune";
+  id: string;
+  hyperparams: {
+    n_epochs: number;
+    batch_size: number | null;
+    prompt_loss_weight: number;
+    learning_rate_multiplier: number | null;
+  },
+  organization_id: string;
+  model: string;
+  training_files: {
+    object: "file",
+    id: string,
+    purpose: "fine-tune",
+    filename: string,
+    bytes: number,
+    created_at: number,
+    status: "processed",
+    status_details: any | null
+  }[];
+  validation_files: any[];
+  result_files: any[];
+  created_at: number;
+  updated_at: number;
+  status: "pending" | "running" | "completed" | "failed";
+  fine_tuned_model: any | null;
+  events: {
+    object: "fine-tune-event",
+    level: "info" | "warning" | "error",
+    message: string,
+    created_at: number
+  }[]
+}
+
+interface FileResponse {
+  object: "file";
+  id: string;
+  purpose: "fine-tune" | "fine-tune-results" | "fine-tune-train" | "fine-tune-validate";
+  filename: string;
+  bytes: number;
+  created_at: number;
+  status: "uploaded" | "processed" | "failed";
+  status_details: any | null;
+}
+
+
+
+
+export type {
+  AvailableModels,
   Models, 
   Model, 
   CompletionRequest, 
@@ -138,5 +216,9 @@ export type {
   ModerationRequest, 
   ModerationResponse, 
   ImageRequest, 
-  ImageResponse
+  ImageResponse,
+  FineTunes,
+  FineTune,
+  FineTuneResponse,
+  FileResponse
 };
