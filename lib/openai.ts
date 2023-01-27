@@ -1,13 +1,17 @@
-import { 
+import {
+  AvailableModels,
   CompletionRequest, 
   CompletionResponse, 
   EditRequest, 
-  EditResponse, 
-  ImageRequest, 
+  EditResponse,
+  FineTuneResponse,
+  FineTunes,
+  FileResponse,
+  ImageRequest,
   ImageResponse, 
   ModerationRequest, 
   ModerationResponse, 
-  Models 
+  Models,
 } from "./types/types.ts";
 
 export class OpenAI {
@@ -67,6 +71,57 @@ export class OpenAI {
         "Content-Type": "application/json",
         Authorization: `Bearer ${this.apiKey}`,
       },
+    });
+    return response.json();
+  }
+
+  async getFineTune(fineTuneId): Promise<FineTuneResponse> {
+    const response = await fetch(`https://api.openai.com/v1/fine-tunes/${fineTuneId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${this.apiKey}`,
+      },
+    });
+    return response.json();
+  }
+
+  async getFineTunes(): Promise<FineTunes> {
+    const response = await fetch("https://api.openai.com/v1/fine-tunes", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${this.apiKey}`,
+      },
+    });
+    return response.json();
+  }
+
+  async createFineTune(fileId: string, model: AvailableModels): Promise<FineTuneResponse> {
+    const response = await fetch(`https://api.openai.com/v1/fine-tunes`, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${this.apiKey}`,
+      },
+      body: JSON.stringify({
+        training_file: fileId,
+        model: model
+      })
+    });
+    return response.json();
+  }
+  async uploadFile(fileData: Uint8Array, fileName: string): Promise<FileResponse> {
+    const form = new FormData();
+    form.append('purpose', 'fine-tune');
+    form.append('file', new Blob([fileData]), fileName);
+
+    const response = await fetch(`https://api.openai.com/v1/files`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${this.apiKey}`,
+      },
+      body: form
     });
     return response.json();
   }
