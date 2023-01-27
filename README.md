@@ -9,12 +9,13 @@ The included functionality is:
 * Edit
 * Image Generation
 * Moderation
+* Fine-tuning
+* Files
 
 The missing features are:
 
-* Fine-tuning
 * Embeddings
-* Files
+
 
 You have to supply an API key to use the API. You can get one from [OpenAI](https://beta.openai.com/).
 
