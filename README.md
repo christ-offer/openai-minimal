@@ -62,3 +62,16 @@ const image = await openai.createImage({
 const models = await openai.getModels()
 
 ```
+
+The general steps for creating a fine tune model are the following
+
+* Upload training data
+  https://beta.openai.com/docs/api-reference/files/upload
+* Create a finetune model
+  https://beta.openai.com/docs/api-reference/fine-tunes
+* Check the status
+  https://beta.openai.com/docs/api-reference/fine-tunes/list
+* Get info on your finetuned model
+  https://beta.openai.com/docs/api-reference/fine-tunes/retrieve
+
+Use your model Id in future requests whether using the openAI api or the openAI playground
