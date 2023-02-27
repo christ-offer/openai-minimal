@@ -202,8 +202,25 @@ interface FileResponse {
   status_details: any | null;
 }
 
+interface EmbeddingsRequest {
+  model: string;
+  input: string | string[];
+  user?: string;
+}
 
-
+interface EmbeddingsResponse {
+  object: string;
+  data: {
+    object: string;
+    embedding: number[];
+    index: number;
+  }[];
+  model: string;
+  usage: {
+    prompt_tokens: number;
+    total_tokens: number;
+  };
+}
 
 export type {
   AvailableModels,
@@ -220,5 +237,7 @@ export type {
   FineTunes,
   FineTune,
   FineTuneResponse,
-  FileResponse
+  FileResponse,
+  EmbeddingsRequest,
+  EmbeddingsResponse
 };
