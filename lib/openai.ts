@@ -12,6 +12,8 @@ import {
   ModerationRequest, 
   ModerationResponse, 
   Models,
+  EmbeddingsRequest,
+  EmbeddingsResponse,
 } from "./types/types.ts";
 
 export class OpenAI {
@@ -125,4 +127,15 @@ export class OpenAI {
     });
     return response.json();
   }
+  async createEmbedding(request: EmbeddingsRequest): Promise<EmbeddingsResponse> {
+    const response = await fetch("https://api.openai.com/v1/embeddings", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${this.apiKey}`,
+      },
+      body: JSON.stringify(request),
+    });
+    return response.json();
+  }  
 }

@@ -11,11 +11,8 @@ The included functionality is:
 * Moderation
 * Fine-tuning
 * Files
-
-The missing features are:
-
 * Embeddings
-
+  
 
 You have to supply an API key to use the API. You can get one from [OpenAI](https://beta.openai.com/).
 
@@ -60,6 +57,11 @@ const image = await openai.createImage({
 })
 
 const models = await openai.getModels()
+
+const embedding = await openai.createEmbedding({
+  model: "text-embedding-ada-002",
+  input: "The food was delicious and the waiter...",
+})
 
 ```
 
